@@ -1,0 +1,49 @@
+﻿@model ProiectMaster.Models.Entites.Order
+
+@{
+    ViewData["Title"] = "SendEmail";
+}
+
+<h1>Send</h1>
+
+<h4>MailMessage</h4>
+@if (ViewBag.Message != null)
+{
+    <h4>@ViewBag.Message</h4>
+}
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SendEmail" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CustomerName" class="custom-control-label"></label>
+                <input asp-for="CustomerName" class="form-control" />
+                <span asp-validation-for="CustomerName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomerPhoneNumber" class="custom-control-label"></label>
+                <input asp-for="CustomerPhoneNumber" class="form-control" />
+                <span asp-validation-for="CustomerPhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomerAddress" class="custom-control-label"></label>
+                <input asp-for="CustomerAddress" class="form-control" />
+                <span asp-validation-for="CustomerAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomerEmail" class="custom-control-label"></label>
+                <input asp-for="CustomerEmail" class="form-control" />
+                <span asp-validation-for="CustomerEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Send" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

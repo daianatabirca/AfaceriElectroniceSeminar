@@ -1,0 +1,84 @@
+﻿@using ProiectMaster.Models.Entites
+@model List<Product>
+@{
+    ViewData["Title"] = "Cart";
+}
+
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    var cantitati = HttpContextAccessor.HttpContext.Session.Get<Dictionary<int, int>>(SessionHelper.ShoppingCart);
+}
+<script src="~/js/FileSaver.js"></script>
+<script>
+    function fnExcelReport(id, name)
+    {
+        var tab_text = '<html xmlns: x="urn:schemas-microsoft-com:office:excel">';
+        tab_text = tab_text + '<head><xml><x: ExcelWorkbook><x: ExcelWorksheets><x: ExcelWorksheet>';
+        tab_text = tab_text + '<x: Name>Test Sheet</x: Name>';
+        tab_text = tab_text + '<x: WorksheetOptions><x: Panes></x: Panes></x: WorksheetOptions ></x: ExcelWorksheet > ';
+        tab_text = tab_text + '</x:ExcelWorksheets></x:ExcelWorkbook></xml></head><body>';
+        tab_text = tab_text + "<table border='1px' style='color:black'>";
+
+        var exportTable = $('#' + id).clone();
+
+        exportTable.find('input').each(function (index,elem) { $(elem).remove(); });
+        exportTable.find('a').each(function (index,elem) { $(elem).remove(); });
+
+        tab_text = tab_text + exportTable.html();
+        tab_text = tab_text + "</table>";
+        tab_text = tab_text + "</html>";
+        var fileName = "Invoice" + '.xls';
+
+        var blob = new Blob([tab_text], { type: "application/vnd.ms-excel;charset=utf-8" });
+        window.saveAs(blob, fileName);
+    }
+</script>
+
+<br /> <br />
+<h1>Your Cart</h1>
+<button type="button" class="btn btn-primary" onclick="javascript: fnExcelReport('Cart', 'data')">Export to Excel</button>
+<br /> <br />
+<div class="row">
+    <table class="table" id = "Cart">
+        <thead>
+            <tr style="background-color: rgba(255, 255, 128, .5);">
+                <th>Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Decription</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+                <th>Remove from cart</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="~/@item.ImagePath" width="200px" />
+                    </td>
+                    <td>@item.Name</td>
+                    <td>@item.Price <span>$</span></td>
+                    <td>@item.Description</td>
+                    <td>@cantitati[item.Id]</td>
+                    <td>@(item.Price * cantitati[item.Id]) <span>$</span></td>
+                    <td>
+                        <a asp-action="RemoveFromCart" asp-route-id="@item.Id" class="btn btn-danger">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="row">
+    <div class="col-6">
+        <h3>Total Amount</h3>
+        <h3>Total : @Model.Sum(c=>c.Price * cantitati[c.Id]) <span>$</span></h3>
+    </div>
+    <div class="col-6">
+        <a asp-area="Customer" asp-action="Checkout" asp-controller="Home" class="btn btn-info" style="float: right;">Proceed to Checkout</a>
+    </div>
+</div>
