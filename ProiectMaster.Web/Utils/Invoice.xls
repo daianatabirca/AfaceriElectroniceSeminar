@@ -1,0 +1,54 @@
+<html xmlns: x="urn:schemas-microsoft-com:office:excel"><head><xml><x: ExcelWorkbook><x: ExcelWorksheets><x: ExcelWorksheet><x: Name>Test Sheet</x: Name><x: WorksheetOptions><x: Panes></x: Panes></x: WorksheetOptions ></x: ExcelWorksheet > </x:ExcelWorksheets></x:ExcelWorkbook></xml></head><body><table border='1px' style='color:black'>
+        <thead>
+            <tr style="background-color: rgba(255, 255, 128, .5);">
+                <th>Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Decription</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+                <th>Remove from cart</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td>
+                        <img src="/img\bd3a3fc9-9153-4c4a-8ec1-b5b3fcc41b97.jpg" width="200px">
+                    </td>
+                    <td>Ecler mango</td>
+                    <td>24.00 <span>$</span></td>
+                    <td>Ecler cu mango, mare</td>
+                    <td>3</td>
+                    <td>72.00 <span>$</span></td>
+                    <td>
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="/img\fa4dd69c-a717-4d55-93d9-851e5ee127f2.jpg" width="200px">
+                    </td>
+                    <td>Caciuli rusesti</td>
+                    <td>15.00 <span>$</span></td>
+                    <td>Prajitura caciula ruseasca</td>
+                    <td>3</td>
+                    <td>45.00 <span>$</span></td>
+                    <td>
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="/img\07aa82a9-16a0-4c80-a6bb-99ec7cc6c638.jpeg" width="200px">
+                    </td>
+                    <td>Suc portocale</td>
+                    <td>16.00 <span>$</span></td>
+                    <td>Suc de portocale 300ml</td>
+                    <td>5</td>
+                    <td>80.00 <span>$</span></td>
+                    <td>
+                        
+                    </td>
+                </tr>
+        </tbody>
+    </table></html>
